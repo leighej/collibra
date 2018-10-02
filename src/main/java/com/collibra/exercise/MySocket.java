@@ -15,6 +15,7 @@ public class MySocket {
         this.server = new ServerSocket(50000);
     }
     public void listen() throws Exception {
+        Long start = System.currentTimeMillis();
         String data = null;
         Socket client = this.server.accept();
         
@@ -40,9 +41,13 @@ public class MySocket {
                 System.out.println("InputLine from client: " + inputLine);
                 outputLine = cc.processInput(inputLine);
                 out.println(outputLine);
-                if (outputLine.equals("Bye."))
+                if (outputLine.equals("BYE MATE!")) {
+                   Long end = System.currentTimeMillis();
+                   System.out.println("Talking time : " + (end - start));
                     break;
+                }
             }
+            Long end = System.currentTimeMillis();
         } catch (Exception e) {
 
         }
